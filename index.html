@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Black Wood — Кав'ярня</title>
+<style>
+  :root {
+    --color-espresso: #140b00;
+    --color-midnight-cocoa: #0b0600;
+    --color-warm-cream: #fff1e0;
+    --color-soft-cream: #f1f1f1;
+    --color-walnut: #43392d;
+    --color-cedar: #4f4538;
+    --color-driftwood: #85796c;
+    --color-burnt-edge: #181109;
+    --color-amber-forge: #ffb442;
+
+    --font-pp-neue-montreal: 'PP Neue Montreal', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    --page-max-width: 1200px;
+    --section-gap: 52px;
+    --card-padding: 12px;
+    --element-gap: 12px;
+
+    --radius-nav: 6px;
+    --radius-cards: 6px;
+    --radius-full: 9999px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--color-espresso);
+    color: var(--color-warm-cream);
+    font-family: var(--font-pp-neue-montreal);
+    font-weight: 400;
+    font-feature-settings: "ss01" on, "kern" on, "liga" on;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  .wrap {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- Nav ---------- */
+  header.nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: transparent;
+    transition: background 0.25s ease, border-color 0.25s ease;
+    border-bottom: 1px solid transparent;
+  }
+  header.nav.scrolled {
+    background: var(--color-espresso);
+    border-bottom: 1px solid var(--color-burnt-edge);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+  }
+  .nav-mark {
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: -0.05px;
+  }
+  .nav-mark span { color: var(--color-amber-forge); }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    margin: 0; padding: 0;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .nav-links a { color: var(--color-warm-cream); opacity: 0.9; }
+  .nav-links a:hover { opacity: 1; color: var(--color-amber-forge); }
+  .nav-actions { display: flex; gap: 10px; align-items: center; }
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--color-walnut);
+    border-radius: var(--radius-nav);
+    color: var(--color-warm-cream);
+    padding: 8px 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: var(--radius-full);
+    padding: 12px 15px;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+  }
+  .btn-amber {
+    background: var(--color-amber-forge);
+    color: var(--color-espresso);
+  }
+  .btn-amber:hover { filter: brightness(1.06); }
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--color-warm-cream);
+    color: var(--color-warm-cream);
+    padding: 10px 15px;
+  }
+  .btn-outline:hover { border-color: var(--color-amber-forge); color: var(--color-amber-forge); }
+
+  .arrow-circle {
+    width: 38px; height: 38px;
+    border-radius: var(--radius-full);
+    background: var(--color-amber-forge);
+    color: var(--color-espresso);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(100deg, rgba(20,11,0,0.97) 30%, rgba(20,11,0,0.55) 60%, rgba(20,11,0,0.25) 100%),
+      url('https://picsum.photos/id/431/1600/1200');
+    background-size: cover;
+    background-position: center;
+    filter: saturate(1.05);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 560px;
+    padding-top: 72px;
+  }
+  .hero-eyebrow {
+    color: var(--color-amber-forge);
+    font-size: 12px;
+    letter-spacing: 0.12px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-size: 73px;
+    line-height: 1.0;
+    letter-spacing: -0.8px;
+    font-weight: 400;
+    margin: 0 0 20px;
+  }
+  .hero p.sub {
+    color: var(--color-driftwood);
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 440px;
+    margin: 0 0 28px;
+  }
+  .hero-actions { display: flex; align-items: center; gap: 12px; }
+
+  /* ---------- Sections ---------- */
+  section { padding: var(--section-gap) 0; }
+  .section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .section-eyebrow {
+    color: var(--color-amber-forge);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-size: 43px;
+    line-height: 1.1;
+    letter-spacing: -0.3px;
+    font-weight: 400;
+    margin: 0;
+    max-width: 620px;
+  }
+  .section-body {
+    color: var(--color-driftwood);
+    font-size: 16px;
+    max-width: 460px;
+    margin: 0;
+  }
+
+  /* ---------- About / Feature grid ---------- */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .feature-card {
+    border-bottom: 1px solid var(--color-walnut);
+    padding: 12px;
+    padding-bottom: 24px;
+  }
+  .feature-icon {
+    width: 40px; height: 40px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-walnut);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+  .feature-card h3 {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 0 8px;
+  }
+  .feature-card p {
+    font-size: 14px;
+    color: var(--color-driftwood);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ---------- Menu / Prices ---------- */
+  .menu-tabsheet {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 52px;
+  }
+  .menu-group h4 {
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: 0;
+    margin: 0 0 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--color-walnut);
+  }
+  .menu-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--color-burnt-edge);
+  }
+  .menu-row:last-child { border-bottom: none; }
+  .menu-row .name { font-size: 14px; font-weight: 500; }
+  .menu-row .desc { font-size: 12px; color: var(--color-driftwood); margin-top: 4px; }
+  .menu-row .price {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-amber-forge);
+    white-space: nowrap;
+  }
+
+  /* ---------- Gallery ---------- */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 160px;
+    gap: 12px;
+  }
+  .gallery-grid .g-item {
+    border-radius: var(--radius-cards);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .gallery-grid .g-item.wide { grid-column: span 2; }
+  .gallery-grid .g-item.tall { grid-row: span 2; }
+  .g-item::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(20,11,0,0) 50%, rgba(20,11,0,0.55) 100%);
+  }
+
+  /* ---------- Baristas ---------- */
+  .barista-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .barista-card {
+    border: 1px solid var(--color-burnt-edge);
+    border-radius: var(--radius-cards);
+    overflow: hidden;
+  }
+  .barista-photo {
+    height: 260px;
+    background-size: cover;
+    background-position: center;
+  }
+  .barista-info { padding: 12px; }
+  .barista-info h4 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 2px;
+  }
+  .barista-info span {
+    font-size: 12px;
+    color: var(--color-amber-forge);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .barista-info p {
+    font-size: 13px;
+    color: var(--color-driftwood);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* ---------- Location ---------- */
+  .location-band {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .location-map {
+    height: 340px;
+    border-radius: var(--radius-cards);
+    border: 1px solid var(--color-walnut);
+    background:
+      radial-gradient(circle at 30% 40%, rgba(255,180,66,0.12), transparent 60%),
+      repeating-linear-gradient(0deg, rgba(255,241,224,0.03) 0 1px, transparent 1px 40px),
+      repeating-linear-gradient(90deg, rgba(255,241,224,0.03) 0 1px, transparent 1px 40px),
+      var(--color-midnight-cocoa);
+    position: relative;
+  }
+  .location-pin {
+    position: absolute;
+    top: 42%; left: 46%;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--color-amber-forge);
+    box-shadow: 0 0 0 8px rgba(255,180,66,0.18);
+  }
+  .location-list { list-style: none; margin: 0; padding: 0; }
+  .location-list li {
+    display: flex;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--color-walnut);
+  }
+  .location-list li:last-child { border-bottom: none; }
+  .loc-icon {
+    width: 36px; height: 36px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-walnut);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 15px;
+  }
+  .location-list h5 { margin: 0 0 4px; font-size: 14px; font-weight: 500; }
+  .location-list p { margin: 0; font-size: 14px; color: var(--color-driftwood); }
+
+  /* ---------- FAQ (light band) ---------- */
+  .faq-band {
+    background: var(--color-warm-cream);
+    color: var(--color-espresso);
+  }
+  .faq-band .section-eyebrow { color: var(--color-espresso); opacity: 0.55; }
+  .faq-band .section-title { color: var(--color-espresso); }
+  .faq-item {
+    border-bottom: 1px solid var(--color-walnut);
+  }
+  .faq-item:first-child { border-top: 1px solid var(--color-walnut); }
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 500;
+  }
+  .faq-q .plus { font-size: 20px; font-weight: 400; transition: transform 0.2s ease; }
+  .faq-item.open .faq-q .plus { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+  .faq-a p {
+    font-size: 14px;
+    color: var(--color-cedar);
+    line-height: 1.5;
+    padding-bottom: 16px;
+    margin: 0;
+    max-width: 640px;
+  }
+
+  /* ---------- CTA band ---------- */
+  .cta-band {
+    background: var(--color-midnight-cocoa);
+    border-radius: var(--radius-cards);
+    padding: 52px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .cta-band h2 {
+    font-size: 35px;
+    letter-spacing: -0.21px;
+    font-weight: 400;
+    margin: 0;
+    max-width: 560px;
+  }
+  .cta-band p {
+    color: var(--color-driftwood);
+    font-size: 16px;
+    margin: 0;
+    max-width: 460px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--color-midnight-cocoa);
+    padding: 52px 0 24px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--color-walnut);
+  }
+  .footer-brand p {
+    color: var(--color-driftwood);
+    font-size: 14px;
+    line-height: 1.5;
+    max-width: 260px;
+    margin-top: 12px;
+  }
+  .footer-col h5 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12px;
+    color: var(--color-driftwood);
+    margin: 0 0 14px;
+    font-weight: 500;
+  }
+  .footer-col ul { list-style: none; margin: 0; padding: 0; }
+  .footer-col li { margin-bottom: 10px; font-size: 14px; }
+  .footer-col a:hover { color: var(--color-amber-forge); }
+  .footer-legal {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    font-size: 12px;
+    color: var(--color-driftwood);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .nav-links, .nav-actions .btn-outline { display: none; }
+    .nav-toggle { display: inline-flex; }
+    .hero h1 { font-size: 48px; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .menu-tabsheet { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .barista-grid { grid-template-columns: repeat(2, 1fr); }
+    .location-band { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .section-title { font-size: 33px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="siteNav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="#top">BLACK WOOD<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">Про нас</a></li>
+      <li><a href="#menu">Меню та ціни</a></li>
+      <li><a href="#gallery">Фотогалерея</a></li>
+      <li><a href="#baristas">Баристи</a></li>
+      <li><a href="#location">Локація</a></li>
+      <li><a href="#faq">Питання</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#location" class="btn btn-outline">Як нас знайти</a>
+      <a href="#menu" class="btn btn-amber">Замовити</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Меню">☰</button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Кав'ярня · з 2016 року</div>
+      <h1>Кава,<br>зварена як мистецтво.</h1>
+      <p class="sub">Black Wood — маленька кав'ярня в центрі міста, де кожна чашка проходить через руки бариста, який знає її смак напам'ять. Зерна власного обсмаження, тепла атмосфера, без поспіху.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-amber">Переглянути меню</a>
+        <a href="#location" class="arrow-circle">→</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">Про нас</div>
+        <h2 class="section-title">Не просто кава — ритуал, який ми ділимо з вами щодня</h2>
+      </div>
+      <p class="section-body">Ми обсмажуємо зерно самі, невеликими партіями, і будуємо меню навколо сезонних смаків та класики спешелті.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">☕</div>
+        <h3>Власне обсмаження</h3>
+        <p>Зерна обсмажуються у нашій міні-обсмажарні щотижня — свіжість, яку відчутно у кожному ковтку.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✦</div>
+        <h3>Бариста-майстри</h3>
+        <p>Наша команда — чемпіони локальних бариста-чемпіонатів, які люблять пояснювати смак так само, як готувати його.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◐</div>
+        <h3>Тепла атмосфера</h3>
+        <p>Дерево, цегла та бурштинове світло — простір, у якому хочеться затриматись довше, ніж на одну каву.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">Меню та ціни</div>
+        <h2 class="section-title">Кава, десерти та легкі сніданки</h2>
+      </div>
+      <p class="section-body">Ціни вказані в гривнях, актуальні на момент публікації меню.</p>
+    </div>
+    <div class="menu-tabsheet">
+      <div class="menu-group">
+        <h4>Кавові напої</h4>
+        <div class="menu-row">
+          <div><div class="name">Еспресо</div><div class="desc">подвійна порція, обсмаження власне</div></div>
+          <div class="price">65 ₴</div>
+        </div>
+        <div class="menu-row">
+          <div><div class="name">Американо</div><div class="desc">класика без молока</div></div>
+          <div class="price">70 ₴</div>
+        </div>
+        <div class="menu-row">
+          <div><div class="name">Капучино</div><div class="desc">оксамитова молочна піна</div></div>
+          <div class="price">85 ₴</div>
+        </div>
+        <div class="menu-row">
+          <div><div class="name">Флет Вайт</div><div class="desc">насичений еспресо з мікропіною</div></div>
+          <div class="price">90 ₴</div>
+        </div>
+        <div class="menu-row">
+          <div><div class="name">Раф на солоній карамелі</div><div class="desc">фірмовий рецепт EMBER</div></div>
+          <div class="price">105 ₴</div>
+        </div>
+      </div>
+      <div class="menu-group">
+        <h4>Альтернатива та без кофеїну</h4>
+        <div class="menu-row">
+          <div><div class="name">Матча латте</div><div class="desc">церемоніальний ґрейд</div></div>
+          <div class="price">95 ₴</div>
+        </div>
+        <div class="menu-row">
+          <div><div class="name">Гарячий шоколад</div><div class="desc">на бельгійському шоколаді 70%</div></div>
+          <div class="price">90 ₴</div>
+        </div>
+        <div class="menu-row">
+          <div><div class="name">Чай спешелті</div><div class="desc">розсипний, 6 видів на вибір</div></div>
+          <div class="price">60 ₴</div>
+        </div>
+      </div>
+      <div class="menu-group">
+        <h4>Десерти</h4>
+        <div class="menu-row">
+          <div><div class="name">Круасан класичний</div><div class="desc">французьке масло</div></div>
+          <div class="price">55 ₴</div>
+        </div>
+        <div class="menu-row">
+          <div><div class="name">Чізкейк Баскський</div><div class="desc">домашній, обпалений зверху</div></div>
+          <div class="price">120 ₴</div>
+        </div>
+        <div class="menu-row">
+          <div><div class="name">Морквяний торт</div><div class="desc">з кремом маскарпоне</div></div>
+          <div class="price">110 ₴</div>
+        </div>
+      </div>
+      <div class="menu-group">
+        <h4>Легкі сніданки</h4>
+        <div class="menu-row">
+          <div><div class="name">Шакшука</div><div class="desc">з домашнім хлібом</div></div>
+          <div class="price">160 ₴</div>
+        </div>
+        <div class="menu-row">
+          <div><div class="name">Авокадо тост</div><div class="desc">яйце пашот, чилі-олія</div></div>
+          <div class="price">145 ₴</div>
+        </div>
+        <div class="menu-row">
+          <div><div class="name">Гранола з йогуртом</div><div class="desc">сезонні ягоди</div></div>
+          <div class="price">115 ₴</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">Фотогалерея</div>
+        <h2 class="section-title">Атмосфера EMBER у кадрах</h2>
+      </div>
+      <a href="#" class="btn btn-outline">Всі фото</a>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item wide tall" style="background-image:url('https://picsum.photos/id/431/900/900')"></div>
+      <div class="g-item" style="background-image:url('https://picsum.photos/id/225/500/400')"></div>
+      <div class="g-item" style="background-image:url('https://picsum.photos/id/30/500/400')"></div>
+      <div class="g-item wide" style="background-image:url('https://picsum.photos/id/292/900/400')"></div>
+      <div class="g-item" style="background-image:url('https://picsum.photos/id/312/500/400')"></div>
+      <div class="g-item tall" style="background-image:url('https://picsum.photos/id/1060/500/900')"></div>
+      <div class="g-item wide" style="background-image:url('https://picsum.photos/id/1080/900/400')"></div>
+    </div>
+  </div>
+</section>
+
+<section id="baristas">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">Баристи</div>
+        <h2 class="section-title">Люди, які варять вашу каву</h2>
+      </div>
+      <p class="section-body">Кожен бариста EMBER проходить внутрішню школу смаку та регулярно бере участь у чемпіонатах.</p>
+    </div>
+    <div class="barista-grid">
+      <div class="barista-card">
+        <div class="barista-photo" style="background-image:url('https://picsum.photos/id/1005/400/500')"></div>
+        <div class="barista-info">
+          <h4>Олег Максимів</h4>
+          <span>Шеф-бариста</span>
+          <p>10 років у спешелті-каві, фіналіст Ukraine Barista Championship 2023.</p>
+        </div>
+      </div>
+      <div class="barista-card">
+        <div class="barista-photo" style="background-image:url('https://picsum.photos/id/1027/400/500')"></div>
+        <div class="barista-info">
+          <h4>Марта Квітко</h4>
+          <span>Старший бариста</span>
+          <p>Спеціалізується на альтернативних методах заварювання та обсмажуванні.</p>
+        </div>
+      </div>
+      <div class="barista-card">
+        <div class="barista-photo" style="background-image:url('https://picsum.photos/id/1012/400/500')"></div>
+        <div class="barista-info">
+          <h4>Тарас Іванчук</h4>
+          <span>Бариста-обсмажувач</span>
+          <p>Відповідає за власну обсмажарню EMBER та підбір зернових партій.</p>
+        </div>
+      </div>
+      <div class="barista-card">
+        <div class="barista-photo" style="background-image:url('https://picsum.photos/id/1011/400/500')"></div>
+        <div class="barista-info">
+          <h4>Софія Гриб</h4>
+          <span>Бариста</span>
+          <p>Латте-арт майстриня, веде суботні майстер-класи для гостей.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="location">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">Локація</div>
+        <h2 class="section-title">Знайти нас легко</h2>
+      </div>
+    </div>
+    <div class="location-band">
+      <div class="location-map">
+        <div class="location-pin"></div>
+      </div>
+      <ul class="location-list">
+        <li>
+          <div class="loc-icon">⚲</div>
+          <div>
+            <h5>Адреса</h5>
+            <p>вул. Хрещатик, 22, Київ, Україна</p>
+          </div>
+        </li>
+        <li>
+          <div class="loc-icon">⏱</div>
+          <div>
+            <h5>Графік роботи</h5>
+            <p>Пн–Пт: 07:30–20:00 · Сб–Нд: 09:00–20:00</p>
+          </div>
+        </li>
+        <li>
+          <div class="loc-icon">☎</div>
+          <div>
+            <h5>Контакти</h5>
+            <p>+380 44 123 45 67 · hello@blackwoodcoffee.ua</p>
+          </div>
+        </li>
+        <li>
+          <div class="loc-icon">🚗</div>
+          <div>
+            <h5>Паркування</h5>
+            <p>Безкоштовна парковка на 15 хв для гостей із замовленням на винос</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="faq-band">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">Питання</div>
+        <h2 class="section-title">Часті запитання</h2>
+      </div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q"><span>Чи можна бронювати столик?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Так, бронювання доступне через телефон або наш Instagram — рекомендуємо за 1–2 години до візиту у вихідні.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Чи є зерно на винос?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Так, ми продаємо зерно власного обсмаження у пакетах 250 г та 500 г — просто у кав'ярні або з доставкою.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Чи проводите ви майстер-класи?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Щосуботи о 12:00 ми проводимо латте-арт майстер-класи для гостей — місця обмежені, реєстрація на сайті.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Чи є вегетаріанське / веганське меню?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Так, увесь спектр рослинного молока доступний без доплати, а частина десертів — повністю веганська.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Завітайте на каву вже сьогодні</h2>
+      <p>Ми на вул. Хрещатик, 22 — відчиняємось о 7:30. Чекаємо на вас з горнятком чогось теплого.</p>
+      <div class="hero-actions">
+        <a href="#location" class="btn btn-amber">Побудувати маршрут</a>
+        <a href="#menu" class="arrow-circle">→</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-mark">BLACK WOOD<span>.</span></div>
+        <p>Маленька кав'ярня власного обсмаження у серці Києва. Кава, десерти та тепла атмосфера щодня з 7:30.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Навігація</h5>
+        <ul>
+          <li><a href="#about">Про нас</a></li>
+          <li><a href="#menu">Меню</a></li>
+          <li><a href="#gallery">Галерея</a></li>
+          <li><a href="#baristas">Баристи</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Контакти</h5>
+        <ul>
+          <li>вул. Хрещатик, 22, Київ</li>
+          <li>+380 44 123 45 67</li>
+          <li>hello@blackwoodcoffee.ua</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Соцмережі</h5>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Telegram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>© 2026 Black Wood Coffee. Усі права захищені.</span>
+      <span>Політика конфіденційності · Умови користування</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav background on scroll
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Mobile nav toggle (simple show/hide of link list)
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.querySelector('.nav-links');
+  navToggle.addEventListener('click', () => {
+    const shown = navLinks.style.display === 'flex';
+    navLinks.style.display = shown ? 'none' : 'flex';
+    navLinks.style.cssText += shown ? '' : 'position:absolute; top:64px; left:0; right:0; background:var(--color-espresso); flex-direction:column; padding:20px 24px; border-bottom:1px solid var(--color-walnut);';
+  });
+</script>
+
+</body>
+</html>
