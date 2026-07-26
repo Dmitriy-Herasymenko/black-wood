@@ -118,15 +118,19 @@
   .btn-amber {
     background: var(--color-amber-forge);
     color: var(--color-espresso);
+    transition: transform 0.25s ease, filter 0.25s ease;
   }
-  .btn-amber:hover { filter: brightness(1.06); }
+  .btn-amber:hover { filter: brightness(1.06); transform: translateY(-2px); }
+  .btn-amber:active { transform: translateY(0) scale(0.97); }
   .btn-outline {
     background: transparent;
     border: 1px solid var(--color-warm-cream);
     color: var(--color-warm-cream);
     padding: 10px 15px;
+    transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
   }
-  .btn-outline:hover { border-color: var(--color-amber-forge); color: var(--color-amber-forge); }
+  .btn-outline:hover { border-color: var(--color-amber-forge); color: var(--color-amber-forge); transform: translateY(-2px); }
+  .btn-outline:active { transform: translateY(0) scale(0.97); }
 
   .arrow-circle {
     width: 38px; height: 38px;
@@ -136,7 +140,9 @@
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
     font-size: 16px;
+    transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
+  .arrow-circle:hover { transform: rotate(45deg); }
 
   /* ---------- Hero ---------- */
   .hero {
@@ -154,6 +160,12 @@
     background-size: cover;
     background-position: center;
     filter: saturate(1.05);
+    transform: scale(1.08);
+    animation: heroZoom 16s ease-out forwards;
+  }
+  @keyframes heroZoom {
+    from { transform: scale(1.12); }
+    to { transform: scale(1); }
   }
   .hero-content {
     position: relative;
@@ -168,6 +180,8 @@
     text-transform: uppercase;
     margin-bottom: 16px;
     font-weight: 500;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.1s forwards;
   }
   .hero h1 {
     font-size: 73px;
@@ -175,6 +189,8 @@
     letter-spacing: -0.8px;
     font-weight: 400;
     margin: 0 0 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.25s forwards;
   }
   .hero p.sub {
     color: var(--color-driftwood);
@@ -182,8 +198,54 @@
     line-height: 1.5;
     max-width: 440px;
     margin: 0 0 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.45s forwards;
   }
-  .hero-actions { display: flex; align-items: center; gap: 12px; }
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .reveal-stagger.is-visible > * { opacity: 1; transform: translateY(0); }
+  .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0.05s; }
+  .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.15s; }
+  .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.25s; }
+  .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 0.35s; }
+  .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.45s; }
+  .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 0.55s; }
+  .reveal-stagger.is-visible > *:nth-child(7) { transition-delay: 0.65s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg, .hero-eyebrow, .hero h1, .hero p.sub, .hero-actions,
+    .reveal, .reveal-stagger > * {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
 
   /* ---------- Sections ---------- */
   section { padding: var(--section-gap) 0; }
@@ -228,7 +290,10 @@
     border-bottom: 1px solid var(--color-walnut);
     padding: 12px;
     padding-bottom: 24px;
+    transition: transform 0.3s ease;
   }
+  .feature-card:hover { transform: translateY(-4px); }
+  .feature-card:hover .feature-icon { border-color: var(--color-amber-forge); transform: scale(1.08) rotate(6deg); }
   .feature-icon {
     width: 40px; height: 40px;
     border-radius: var(--radius-full);
@@ -236,6 +301,7 @@
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 12px;
     font-size: 18px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
   }
   .feature-card h3 {
     font-size: 14px;
@@ -294,6 +360,11 @@
     background-position: center;
     position: relative;
     overflow: hidden;
+    transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .gallery-grid .g-item:hover {
+    transform: scale(1.035);
+    z-index: 2;
   }
   .gallery-grid .g-item.wide { grid-column: span 2; }
   .gallery-grid .g-item.tall { grid-row: span 2; }
@@ -301,6 +372,10 @@
     content: "";
     position: absolute; inset: 0;
     background: linear-gradient(180deg, rgba(20,11,0,0) 50%, rgba(20,11,0,0.55) 100%);
+    transition: background 0.4s ease;
+  }
+  .g-item:hover::after {
+    background: linear-gradient(180deg, rgba(20,11,0,0) 30%, rgba(20,11,0,0.35) 100%);
   }
 
   /* ---------- Baristas ---------- */
@@ -313,12 +388,16 @@
     border: 1px solid var(--color-burnt-edge);
     border-radius: var(--radius-cards);
     overflow: hidden;
+    transition: border-color 0.3s ease, transform 0.3s ease;
   }
+  .barista-card:hover { border-color: var(--color-walnut); transform: translateY(-4px); }
   .barista-photo {
     height: 260px;
     background-size: cover;
     background-position: center;
+    transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
+  .barista-card:hover .barista-photo { transform: scale(1.08); }
   .barista-info { padding: 12px; }
   .barista-info h4 {
     font-size: 16px;
@@ -349,20 +428,22 @@
     height: 340px;
     border-radius: var(--radius-cards);
     border: 1px solid var(--color-walnut);
-    background:
-      radial-gradient(circle at 30% 40%, rgba(255,180,66,0.12), transparent 60%),
-      repeating-linear-gradient(0deg, rgba(255,241,224,0.03) 0 1px, transparent 1px 40px),
-      repeating-linear-gradient(90deg, rgba(255,241,224,0.03) 0 1px, transparent 1px 40px),
-      var(--color-midnight-cocoa);
     position: relative;
+    overflow: hidden;
+    filter: grayscale(0.35) sepia(0.15) saturate(1.1);
   }
-  .location-pin {
+  .location-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .location-route-btn {
     position: absolute;
-    top: 42%; left: 46%;
-    width: 20px; height: 20px;
-    border-radius: 50%;
-    background: var(--color-amber-forge);
-    box-shadow: 0 0 0 8px rgba(255,180,66,0.18);
+    left: 12px;
+    bottom: 12px;
+    z-index: 3;
+    box-shadow: none;
   }
   .location-list { list-style: none; margin: 0; padding: 0; }
   .location-list li {
@@ -370,7 +451,9 @@
     gap: 14px;
     padding: 16px 0;
     border-bottom: 1px solid var(--color-walnut);
+    transition: transform 0.3s ease;
   }
+  .location-list li:hover { transform: translateX(4px); }
   .location-list li:last-child { border-bottom: none; }
   .loc-icon {
     width: 36px; height: 36px;
@@ -379,7 +462,9 @@
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
     font-size: 15px;
+    transition: border-color 0.3s ease, color 0.3s ease;
   }
+  .location-list li:hover .loc-icon { border-color: var(--color-amber-forge); color: var(--color-amber-forge); }
   .location-list h5 { margin: 0 0 4px; font-size: 14px; font-weight: 500; }
   .location-list p { margin: 0; font-size: 14px; color: var(--color-driftwood); }
 
@@ -544,7 +629,7 @@
       </div>
       <p class="section-body">Ми обсмажуємо зерно самі, невеликими партіями, і будуємо меню навколо сезонних смаків та класики спешелті.</p>
     </div>
-    <div class="feature-grid">
+    <div class="feature-grid reveal-stagger">
       <div class="feature-card">
         <div class="feature-icon">☕</div>
         <h3>Власне обсмаження</h3>
@@ -573,7 +658,7 @@
       </div>
       <p class="section-body">Ціни вказані в гривнях, актуальні на момент публікації меню.</p>
     </div>
-    <div class="menu-tabsheet">
+    <div class="menu-tabsheet reveal-stagger">
       <div class="menu-group">
         <h4>Кавові напої</h4>
         <div class="menu-row">
@@ -593,7 +678,7 @@
           <div class="price">90 ₴</div>
         </div>
         <div class="menu-row">
-          <div><div class="name">Раф на солоній карамелі</div><div class="desc">фірмовий рецепт EMBER</div></div>
+          <div><div class="name">Раф на солоній карамелі</div><div class="desc">фірмовий рецепт Black Wood</div></div>
           <div class="price">105 ₴</div>
         </div>
       </div>
@@ -651,11 +736,11 @@
     <div class="section-head">
       <div>
         <div class="section-eyebrow">Фотогалерея</div>
-        <h2 class="section-title">Атмосфера EMBER у кадрах</h2>
+        <h2 class="section-title">Атмосфера Black Wood у кадрах</h2>
       </div>
       <a href="#" class="btn btn-outline">Всі фото</a>
     </div>
-    <div class="gallery-grid">
+    <div class="gallery-grid reveal-stagger">
       <div class="g-item wide tall" style="background-image:url('https://picsum.photos/id/431/900/900')"></div>
       <div class="g-item" style="background-image:url('https://picsum.photos/id/225/500/400')"></div>
       <div class="g-item" style="background-image:url('https://picsum.photos/id/30/500/400')"></div>
@@ -674,9 +759,9 @@
         <div class="section-eyebrow">Баристи</div>
         <h2 class="section-title">Люди, які варять вашу каву</h2>
       </div>
-      <p class="section-body">Кожен бариста EMBER проходить внутрішню школу смаку та регулярно бере участь у чемпіонатах.</p>
+      <p class="section-body">Кожен бариста Black Wood проходить внутрішню школу смаку та регулярно бере участь у чемпіонатах.</p>
     </div>
-    <div class="barista-grid">
+    <div class="barista-grid reveal-stagger">
       <div class="barista-card">
         <div class="barista-photo" style="background-image:url('https://picsum.photos/id/1005/400/500')"></div>
         <div class="barista-info">
@@ -698,7 +783,7 @@
         <div class="barista-info">
           <h4>Тарас Іванчук</h4>
           <span>Бариста-обсмажувач</span>
-          <p>Відповідає за власну обсмажарню EMBER та підбір зернових партій.</p>
+          <p>Відповідає за власну обсмажарню Black Wood та підбір зернових партій.</p>
         </div>
       </div>
       <div class="barista-card">
@@ -721,9 +806,21 @@
         <h2 class="section-title">Знайти нас легко</h2>
       </div>
     </div>
-    <div class="location-band">
+    <div class="location-band reveal">
       <div class="location-map">
-        <div class="location-pin"></div>
+        <iframe
+          src="https://www.google.com/maps?q=Київ,+вулиця+Хрещатик+22&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+        <a
+          class="btn btn-amber location-route-btn"
+          target="_blank"
+          rel="noopener"
+          href="https://www.google.com/maps/dir/?api=1&destination=%D0%9A%D0%B8%D1%97%D0%B2%2C+%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F+%D0%A5%D1%80%D0%B5%D1%89%D0%B0%D1%82%D0%B8%D0%BA+22">
+          Прокласти маршрут →
+        </a>
       </div>
       <ul class="location-list">
         <li>
@@ -767,7 +864,7 @@
         <h2 class="section-title">Часті запитання</h2>
       </div>
     </div>
-    <div class="faq-list">
+    <div class="faq-list reveal-stagger">
       <div class="faq-item">
         <div class="faq-q"><span>Чи можна бронювати столик?</span><span class="plus">+</span></div>
         <div class="faq-a"><p>Так, бронювання доступне через телефон або наш Instagram — рекомендуємо за 1–2 години до візиту у вихідні.</p></div>
@@ -790,11 +887,11 @@
 
 <section>
   <div class="wrap">
-    <div class="cta-band">
+    <div class="cta-band reveal">
       <h2>Завітайте на каву вже сьогодні</h2>
       <p>Ми на вул. Хрещатик, 22 — відчиняємось о 7:30. Чекаємо на вас з горнятком чогось теплого.</p>
       <div class="hero-actions">
-        <a href="#location" class="btn btn-amber">Побудувати маршрут</a>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=%D0%9A%D0%B8%D1%97%D0%B2%2C+%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F+%D0%A5%D1%80%D0%B5%D1%89%D0%B0%D1%82%D0%B8%D0%BA+22" target="_blank" rel="noopener" class="btn btn-amber">Побудувати маршрут</a>
         <a href="#menu" class="arrow-circle">→</a>
       </div>
     </div>
@@ -865,6 +962,18 @@
       }
     });
   });
+
+  // Scroll reveal animations
+  const revealTargets = document.querySelectorAll('.reveal, .reveal-stagger');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  revealTargets.forEach(el => revealObserver.observe(el));
 
   // Mobile nav toggle (simple show/hide of link list)
   const navToggle = document.getElementById('navToggle');
