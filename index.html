@@ -360,7 +360,12 @@
     background-position: center;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
     transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .gallery-grid .g-item:focus-visible {
+    outline: 2px solid var(--color-amber-forge);
+    outline-offset: 2px;
   }
   .gallery-grid .g-item:hover {
     transform: scale(1.035);
@@ -569,6 +574,85 @@
     gap: 8px;
   }
 
+  /* ---------- Lightbox ---------- */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(11, 6, 0, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .lightbox.is-open { opacity: 1; visibility: visible; }
+  .lightbox-stage {
+    max-width: min(88vw, 1000px);
+    max-height: 84vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    transform: scale(0.96);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .lightbox.is-open .lightbox-stage { transform: scale(1); opacity: 1; }
+  .lightbox-stage img {
+    max-width: 100%;
+    max-height: 74vh;
+    border-radius: var(--radius-cards);
+    border: 1px solid var(--color-walnut);
+  }
+  .lightbox-caption {
+    color: var(--color-driftwood);
+    font-size: 14px;
+    margin: 0;
+    text-align: center;
+  }
+  .lightbox-close,
+  .lightbox-nav {
+    position: absolute;
+    background: transparent;
+    border: 1px solid var(--color-walnut);
+    color: var(--color-warm-cream);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  }
+  .lightbox-close:hover,
+  .lightbox-nav:hover {
+    border-color: var(--color-amber-forge);
+    color: var(--color-amber-forge);
+  }
+  .lightbox-close {
+    top: 24px;
+    right: 24px;
+    width: 42px; height: 42px;
+    font-size: 26px;
+  }
+  .lightbox-nav {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px; height: 48px;
+    font-size: 26px;
+  }
+  .lightbox-nav:hover { transform: translateY(-50%) scale(1.06); }
+  .lightbox-nav.prev { left: 24px; }
+  .lightbox-nav.next { right: 24px; }
+
+  @media (max-width: 640px) {
+    .lightbox-nav { width: 38px; height: 38px; font-size: 20px; }
+    .lightbox-nav.prev { left: 10px; }
+    .lightbox-nav.next { right: 10px; }
+    .lightbox-close { top: 12px; right: 12px; }
+  }
+
   /* ---------- Responsive ---------- */
   @media (max-width: 900px) {
     .nav-links, .nav-actions .btn-outline { display: none; }
@@ -741,16 +825,28 @@
       <a href="#" class="btn btn-outline">Всі фото</a>
     </div>
     <div class="gallery-grid reveal-stagger">
-      <div class="g-item wide tall" style="background-image:url('https://picsum.photos/id/431/900/900')"></div>
-      <div class="g-item" style="background-image:url('https://picsum.photos/id/225/500/400')"></div>
-      <div class="g-item" style="background-image:url('https://picsum.photos/id/30/500/400')"></div>
-      <div class="g-item wide" style="background-image:url('https://picsum.photos/id/292/900/400')"></div>
-      <div class="g-item" style="background-image:url('https://picsum.photos/id/312/500/400')"></div>
-      <div class="g-item tall" style="background-image:url('https://picsum.photos/id/1060/500/900')"></div>
-      <div class="g-item wide" style="background-image:url('https://picsum.photos/id/1080/900/400')"></div>
+      <div class="g-item wide tall" tabindex="0" role="button" aria-label="Відкрити фото" style="background-image:url('https://picsum.photos/id/431/1200/1200')" data-full="https://picsum.photos/id/431/1600/1600" data-caption="Барна стійка Black Wood в годину пік"></div>
+      <div class="g-item" tabindex="0" role="button" aria-label="Відкрити фото" style="background-image:url('https://picsum.photos/id/225/700/500')" data-full="https://picsum.photos/id/225/1400/1000" data-caption="Свіжозварений флет вайт"></div>
+      <div class="g-item" tabindex="0" role="button" aria-label="Відкрити фото" style="background-image:url('https://picsum.photos/id/30/700/500')" data-full="https://picsum.photos/id/30/1400/1000" data-caption="Зерна власного обсмаження"></div>
+      <div class="g-item wide" tabindex="0" role="button" aria-label="Відкрити фото" style="background-image:url('https://picsum.photos/id/292/1200/500')" data-full="https://picsum.photos/id/292/1800/900" data-caption="Затишний зал кав'ярні"></div>
+      <div class="g-item" tabindex="0" role="button" aria-label="Відкрити фото" style="background-image:url('https://picsum.photos/id/312/700/500')" data-full="https://picsum.photos/id/312/1400/1000" data-caption="Латте-арт від наших баристів"></div>
+      <div class="g-item tall" tabindex="0" role="button" aria-label="Відкрити фото" style="background-image:url('https://picsum.photos/id/1060/700/1200')" data-full="https://picsum.photos/id/1060/1000/1600" data-caption="Ранкова обсмажарня"></div>
+      <div class="g-item wide" tabindex="0" role="button" aria-label="Відкрити фото" style="background-image:url('https://picsum.photos/id/1080/1200/500')" data-full="https://picsum.photos/id/1080/1800/900" data-caption="Десертна вітрина"></div>
+      <div class="g-item" tabindex="0" role="button" aria-label="Відкрити фото" style="background-image:url('https://picsum.photos/id/1060/700/500')" data-full="https://picsum.photos/id/1060/1400/1000" data-caption="Столик біля вікна"></div>
+      <div class="g-item" tabindex="0" role="button" aria-label="Відкрити фото" style="background-image:url('https://picsum.photos/id/342/700/500')" data-full="https://picsum.photos/id/342/1400/1000" data-caption="Гостьовий диван у глибині зали"></div>
     </div>
   </div>
 </section>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Закрити">×</button>
+  <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Попереднє фото">‹</button>
+  <div class="lightbox-stage">
+    <img id="lightboxImg" src="" alt="">
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+  <button class="lightbox-nav next" id="lightboxNext" aria-label="Наступне фото">›</button>
+</div>
 
 <section id="baristas">
   <div class="wrap">
@@ -974,6 +1070,53 @@
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
   revealTargets.forEach(el => revealObserver.observe(el));
+
+  // Gallery lightbox
+  const galleryItems = Array.from(document.querySelectorAll('.gallery-grid .g-item'));
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  let currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = (index + galleryItems.length) % galleryItems.length;
+    const item = galleryItems[currentIndex];
+    lightboxImg.src = item.dataset.full;
+    lightboxImg.alt = item.dataset.caption || '';
+    lightboxCaption.textContent = item.dataset.caption || '';
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  galleryItems.forEach((item, index) => {
+    item.addEventListener('click', () => openLightbox(index));
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(index);
+      }
+    });
+  });
+
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxPrev').addEventListener('click', () => openLightbox(currentIndex - 1));
+  document.getElementById('lightboxNext').addEventListener('click', () => openLightbox(currentIndex + 1));
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') openLightbox(currentIndex + 1);
+    if (e.key === 'ArrowLeft') openLightbox(currentIndex - 1);
+  });
 
   // Mobile nav toggle (simple show/hide of link list)
   const navToggle = document.getElementById('navToggle');
