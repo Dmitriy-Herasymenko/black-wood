@@ -107,6 +107,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+    font-family: inherit;
     font-size: 14px;
     font-weight: 500;
     border-radius: var(--radius-full);
@@ -660,11 +661,39 @@
     .hero h1 { font-size: 48px; }
     .feature-grid { grid-template-columns: 1fr; }
     .menu-tabsheet { grid-template-columns: 1fr; }
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; }
     .barista-grid { grid-template-columns: repeat(2, 1fr); }
     .location-band { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .section-title { font-size: 33px; }
+    .cta-band { padding: 32px 24px; }
+  }
+
+  @media (max-width: 640px) {
+    :root { --section-gap: 36px; }
+    .wrap { padding: 0 16px; }
+    .nav-inner { padding: 14px 16px; }
+    .nav-mark { font-size: 17px; }
+    .hero { min-height: 92vh; }
+    .hero-content { padding-top: 88px; }
+    .hero h1 { font-size: 36px; letter-spacing: -0.3px; }
+    .hero p.sub { font-size: 14px; max-width: 100%; }
+    .hero-actions { flex-wrap: wrap; }
+    .section-head { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 24px; }
+    .section-title { font-size: 27px; letter-spacing: -0.08px; }
+    .section-body { max-width: 100%; }
+    .menu-tabsheet { gap: 24px; }
+    .menu-row { flex-direction: column; gap: 4px; align-items: flex-start; }
+    .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+    .gallery-grid .g-item.wide,
+    .gallery-grid .g-item.tall { grid-column: span 1; grid-row: span 1; }
+    .barista-grid { grid-template-columns: 1fr; }
+    .barista-photo { height: 300px; }
+    .location-map { height: 260px; }
+    .location-route-btn { font-size: 13px; padding: 10px 13px; left: 8px; bottom: 8px; }
+    .cta-band h2 { font-size: 27px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    .footer-legal { flex-direction: column; }
   }
 </style>
 </head>
@@ -706,7 +735,7 @@
 
 <section id="about">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div>
         <div class="section-eyebrow">Про нас</div>
         <h2 class="section-title">Не просто кава — ритуал, який ми ділимо з вами щодня</h2>
@@ -735,7 +764,7 @@
 
 <section id="menu">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div>
         <div class="section-eyebrow">Меню та ціни</div>
         <h2 class="section-title">Кава, десерти та легкі сніданки</h2>
@@ -817,12 +846,12 @@
 
 <section id="gallery">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div>
         <div class="section-eyebrow">Фотогалерея</div>
         <h2 class="section-title">Атмосфера Black Wood у кадрах</h2>
       </div>
-      <a href="#" class="btn btn-outline">Всі фото</a>
+      <button type="button" id="openGalleryBtn" class="btn btn-outline">Всі фото</button>
     </div>
     <div class="gallery-grid reveal-stagger">
       <div class="g-item wide tall" tabindex="0" role="button" aria-label="Відкрити фото" style="background-image:url('https://picsum.photos/id/431/1200/1200')" data-full="https://picsum.photos/id/431/1600/1600" data-caption="Барна стійка Black Wood в годину пік"></div>
@@ -850,7 +879,7 @@
 
 <section id="baristas">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div>
         <div class="section-eyebrow">Баристи</div>
         <h2 class="section-title">Люди, які варять вашу каву</h2>
@@ -896,7 +925,7 @@
 
 <section id="location">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div>
         <div class="section-eyebrow">Локація</div>
         <h2 class="section-title">Знайти нас легко</h2>
@@ -954,7 +983,7 @@
 
 <section id="faq" class="faq-band">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div>
         <div class="section-eyebrow">Питання</div>
         <h2 class="section-title">Часті запитання</h2>
@@ -1105,6 +1134,7 @@
     });
   });
 
+  document.getElementById('openGalleryBtn').addEventListener('click', () => openLightbox(0));
   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
   document.getElementById('lightboxPrev').addEventListener('click', () => openLightbox(currentIndex - 1));
   document.getElementById('lightboxNext').addEventListener('click', () => openLightbox(currentIndex + 1));
