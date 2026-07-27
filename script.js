@@ -1,11 +1,9 @@
-  // Nav background on scroll
   const nav = document.getElementById('siteNav');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
   });
 
-  // FAQ accordion
   document.querySelectorAll('.faq-item').forEach(item => {
     const q = item.querySelector('.faq-q');
     const a = item.querySelector('.faq-a');
@@ -22,7 +20,6 @@
     });
   });
 
-  // Scroll reveal animations
   const revealTargets = document.querySelectorAll('.reveal, .reveal-stagger');
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -34,7 +31,6 @@
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
   revealTargets.forEach(el => revealObserver.observe(el));
 
-  // Gallery slider
   const galleryViewport = document.querySelector('.gallery-viewport');
   const galleryTrack = document.getElementById('galleryTrack');
   const galleryDots = document.getElementById('galleryDots');
@@ -89,7 +85,6 @@
     galleryResizeTimer = setTimeout(() => updateGallerySlider(true), 150);
   });
 
-  // Autoplay
   const GALLERY_AUTOPLAY_DELAY = 4000;
   let galleryAutoplayTimer = null;
 
@@ -127,8 +122,11 @@
     galleryTouchStartX = null;
     startGalleryAutoplay();
   });
+  galleryViewport.addEventListener('touchcancel', () => {
+    galleryTouchStartX = null;
+    startGalleryAutoplay();
+  });
 
-  // Gallery lightbox
   const galleryItems = gallerySlides;
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
@@ -176,7 +174,6 @@
     if (e.key === 'ArrowLeft') openLightbox(currentIndex - 1);
   });
 
-  // Mobile nav toggle (simple show/hide of link list)
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
 
