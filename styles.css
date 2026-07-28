@@ -819,6 +819,7 @@
     .menu-row:hover { background: var(--color-walnut); }
     .menu-row .name { font-size: 13px; }
     .menu-row .price { font-size: 13px; }
+    .gallery-track { gap: 0; }
     .gallery-track .g-item { flex: 0 0 100%; aspect-ratio: 4 / 3; }
     .barista-grid { grid-template-columns: 1fr; }
     .barista-photo { height: 300px; }

@@ -16,32 +16,7 @@
 
 <a class="skip-link" href="#main-content">Перейти до основного контенту</a>
 
-<header class="nav" id="siteNav">
-  <div class="nav-inner">
-    <a class="nav-mark" href="#top">
-      <svg class="brand-icon" width="26" height="26" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <circle cx="20" cy="20" r="18.5" stroke="currentColor" stroke-width="1.4"/>
-        <path d="M11.5 17.5h15v6a7.5 7.5 0 0 1-7.5 7.5 7.5 7.5 0 0 1-7.5-7.5v-6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-        <path d="M26.5 19.5h2a3 3 0 1 1 0 6h-2" stroke="currentColor" stroke-width="1.6"/>
-        <path d="M15.5 13c0-1.1 1-1.3 1-2.4M20 13c0-1.1 1-1.3 1-2.4M24.5 13c0-1.1 1-1.3 1-2.4" stroke="var(--color-amber-forge)" stroke-width="1.3" stroke-linecap="round"/>
-      </svg>
-      BLACK WOOD<span>.</span>
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about">Про нас</a></li>
-      <li><a href="#menu">Меню та ціни</a></li>
-      <li><a href="#gallery">Фотогалерея</a></li>
-      <li><a href="#baristas">Баристи</a></li>
-      <li><a href="#location">Локація</a></li>
-      <li><a href="#faq">Питання</a></li>
-    </ul>
-    <div class="nav-actions">
-      <a href="#location" class="btn btn-outline">Як нас знайти</a>
-      <a href="#menu" class="btn btn-amber">Замовити</a>
-    </div>
-    <button class="nav-toggle" id="navToggle" aria-label="Відкрити меню" aria-expanded="false" aria-controls="navLinks">☰</button>
-  </div>
-</header>
+<div id="header-placeholder"></div>
 
 <main id="main-content">
 
@@ -94,78 +69,97 @@
     <div class="section-head reveal">
       <div>
         <div class="section-eyebrow">Меню та ціни</div>
-        <h2 class="section-title">Кава, десерти та легкі сніданки</h2>
+        <h2 class="section-title">Кава, напої та фастфуд</h2>
       </div>
       <p class="section-body">Ціни вказані в гривнях, актуальні на момент публікації меню.</p>
     </div>
     <div class="menu-tabsheet reveal-stagger">
       <div class="menu-group">
-        <h3>Кавові напої</h3>
-        <div class="menu-row">
-          <div><div class="name">Еспресо</div><div class="desc">подвійна порція, обсмаження власне</div></div>
-          <div class="price">65 ₴</div>
-        </div>
-        <div class="menu-row">
-          <div><div class="name">Американо</div><div class="desc">класика без молока</div></div>
-          <div class="price">70 ₴</div>
-        </div>
-        <div class="menu-row">
-          <div><div class="name">Капучино</div><div class="desc">оксамитова молочна піна</div></div>
-          <div class="price">85 ₴</div>
-        </div>
-        <div class="menu-row">
-          <div><div class="name">Флет Вайт</div><div class="desc">насичений еспресо з мікропіною</div></div>
-          <div class="price">90 ₴</div>
-        </div>
-        <div class="menu-row">
-          <div><div class="name">Раф на солоній карамелі</div><div class="desc">фірмовий рецепт Black Wood</div></div>
-          <div class="price">105 ₴</div>
-        </div>
+        <h3>Кава</h3>
+        <div class="menu-row"><div><div class="name">Еспресо</div></div><div class="price">30 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Еспресо з молоком</div></div><div class="price">35 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Американо</div></div><div class="price">30 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Американо з молоком</div></div><div class="price">35 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Допіо</div></div><div class="price">40 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Лунго</div></div><div class="price">30 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Ристрето</div></div><div class="price">30 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Капучино</div></div><div class="price">50/60/70 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Латте</div></div><div class="price">50/60 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Флет-вайт</div></div><div class="price">48 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Раф</div></div><div class="price">55/80 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Мокко</div></div><div class="price">60 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Мокачино</div></div><div class="price">60 ₴</div></div>
       </div>
       <div class="menu-group">
-        <h3>Альтернатива та без кофеїну</h3>
-        <div class="menu-row">
-          <div><div class="name">Матча латте</div><div class="desc">церемоніальний ґрейд</div></div>
-          <div class="price">95 ₴</div>
-        </div>
-        <div class="menu-row">
-          <div><div class="name">Гарячий шоколад</div><div class="desc">на бельгійському шоколаді 70%</div></div>
-          <div class="price">90 ₴</div>
-        </div>
-        <div class="menu-row">
-          <div><div class="name">Чай спешелті</div><div class="desc">розсипний, 6 видів на вибір</div></div>
-          <div class="price">60 ₴</div>
-        </div>
+        <h3>Холодні напої</h3>
+        <div class="menu-row"><div><div class="name">Айс-латте</div></div><div class="price">60/75 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Bubble Latte</div></div><div class="price">85 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Еспресо-тонік</div></div><div class="price">50/65 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Оранж кава</div></div><div class="price">60/75 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Лимонад</div></div><div class="price">60/75 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Блакитна лагуна</div></div><div class="price">60/70 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Мохіто</div></div><div class="price">70 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Бабл ті</div></div><div class="price">60/75 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Молочний коктейль</div></div><div class="price">45/55 ₴</div></div>
       </div>
       <div class="menu-group">
-        <h3>Десерти</h3>
-        <div class="menu-row">
-          <div><div class="name">Круасан класичний</div><div class="desc">французьке масло</div></div>
-          <div class="price">55 ₴</div>
-        </div>
-        <div class="menu-row">
-          <div><div class="name">Чізкейк Баскський</div><div class="desc">домашній, обпалений зверху</div></div>
-          <div class="price">120 ₴</div>
-        </div>
-        <div class="menu-row">
-          <div><div class="name">Морквяний торт</div><div class="desc">з кремом маскарпоне</div></div>
-          <div class="price">110 ₴</div>
-        </div>
+        <h3>Гарячі напої</h3>
+        <div class="menu-row"><div><div class="name">Гарячий шоколад</div></div><div class="price">45/50/55 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Какао</div></div><div class="price">45/50/55 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Бейбічіно</div></div><div class="price">50 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Чай асорті</div></div><div class="price">30 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Чай натуральний</div></div><div class="price">38 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Чай Шу-пуер, Шен-пуер</div></div><div class="price">200 ₴</div></div>
       </div>
       <div class="menu-group">
-        <h3>Легкі сніданки</h3>
-        <div class="menu-row">
-          <div><div class="name">Шакшука</div><div class="desc">з домашнім хлібом</div></div>
-          <div class="price">160 ₴</div>
-        </div>
-        <div class="menu-row">
-          <div><div class="name">Авокадо тост</div><div class="desc">яйце пашот, чилі-олія</div></div>
-          <div class="price">145 ₴</div>
-        </div>
-        <div class="menu-row">
-          <div><div class="name">Гранола з йогуртом</div><div class="desc">сезонні ягоди</div></div>
-          <div class="price">115 ₴</div>
-        </div>
+        <h3>Доповнення</h3>
+        <div class="menu-row"><div><div class="name">Рослинне молоко</div></div><div class="price">+20/25/35 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Безлактозне молоко</div></div><div class="price">+15 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Декафенато</div></div><div class="price">+15 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Сироп</div></div><div class="price">+5 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Вершки</div></div><div class="price">+10 ₴</div></div>
+      </div>
+      <div class="menu-group">
+        <h3>Літні лимонади</h3>
+        <div class="menu-row"><div><div class="name">Манго маракуя</div></div><div class="price">60/75 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Кавун</div></div><div class="price">60/75 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Полуничне мохіто</div></div><div class="price">60/75 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Барбарис м'ята</div></div><div class="price">60/75 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Апероль</div></div><div class="price">60/75 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Вишня</div></div><div class="price">60/75 ₴</div></div>
+      </div>
+      <div class="menu-group">
+        <h3>Бабл ті</h3>
+        <div class="menu-row"><div><div class="name">Малина</div></div><div class="price">60/75 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Кавун</div></div><div class="price">60/75 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Вишня</div></div><div class="price">60/75 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Bubble Latte</div></div><div class="price">85 ₴</div></div>
+      </div>
+      <div class="menu-group">
+        <h3>Фастфуд</h3>
+        <div class="menu-row"><div><div class="name">Бургер зі свинини</div></div><div class="price">120 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Бургер яловичий</div></div><div class="price">130 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Бургер курячий</div></div><div class="price">120 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Паніні з салямі</div></div><div class="price">70 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Паніні з шинкою</div></div><div class="price">80 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Паніні "Цезар"</div></div><div class="price">80 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Хот-дог молочна</div></div><div class="price">55 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Хот-дог баварська</div></div><div class="price">60 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Хот-дог баварська з сиром</div></div><div class="price">60 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Хот-дог домашня</div></div><div class="price">70 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Сендвіч з шинкою</div></div><div class="price">65 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Сендвіч з салямі</div></div><div class="price">65 ₴</div></div>
+      </div>
+      <div class="menu-group">
+        <h3>Снеки та гарніри</h3>
+        <div class="menu-row"><div><div class="name">Картопля фрі</div><div class="desc">L / XL</div></div><div class="price">50/60 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Картопля Ginu</div><div class="desc">L / XL</div></div><div class="price">50/60 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Нагетси 6 шт</div></div><div class="price">75 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Нагетси 9 шт</div></div><div class="price">105 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Нагетси 12 шт</div></div><div class="price">140 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Сирні палички 4 шт</div></div><div class="price">110 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Сирні палички 7 шт</div></div><div class="price">140 ₴</div></div>
+        <div class="menu-row"><div><div class="name">Сирники 4 шт</div></div><div class="price">110 ₴</div></div>
       </div>
     </div>
   </div>
@@ -266,7 +260,7 @@
     <div class="location-band reveal">
       <div class="location-map">
         <iframe
-          src="https://www.google.com/maps?q=Київ,+вулиця+Хрещатик+22&output=embed"
+          src="https://www.google.com/maps?q=%D0%9A%D1%96%D1%80%D0%BE%D0%B2%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%81%D1%8C%D0%BA%D0%B0%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%2C%20%D0%93%D0%B0%D0%B9%D0%B2%D0%BE%D1%80%D0%BE%D0%BD%2C%20%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F%20%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D1%8F%20%D0%A1%D1%82%D1%83%D1%81%D0%B0%2C%2021&output=embed"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
           allowfullscreen>
@@ -275,7 +269,7 @@
           class="btn btn-amber location-route-btn"
           target="_blank"
           rel="noopener"
-          href="https://www.google.com/maps/dir/?api=1&destination=%D0%9A%D0%B8%D1%97%D0%B2%2C+%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F+%D0%A5%D1%80%D0%B5%D1%89%D0%B0%D1%82%D0%B8%D0%BA+22">
+          href="https://www.google.com/maps/dir/?api=1&destination=%D0%9A%D1%96%D1%80%D0%BE%D0%B2%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%81%D1%8C%D0%BA%D0%B0%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%2C%20%D0%93%D0%B0%D0%B9%D0%B2%D0%BE%D1%80%D0%BE%D0%BD%2C%20%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F%20%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D1%8F%20%D0%A1%D1%82%D1%83%D1%81%D0%B0%2C%2021">
           Прокласти маршрут →
         </a>
       </div>
@@ -284,14 +278,14 @@
           <div class="loc-icon">⚲</div>
           <div>
             <h3>Адреса</h3>
-            <p>вул. Хрещатик, 22, Київ, Україна</p>
+            <p>Кіровоградська обл., м. Гайворон, вул. Василя Стуса, 21</p>
           </div>
         </li>
         <li>
           <div class="loc-icon">⏱</div>
           <div>
             <h3>Графік роботи</h3>
-            <p>Пн–Пт: 07:30–20:00 · Сб–Нд: 09:00–20:00</p>
+            <p>Щодня: 08:00–22:30</p>
           </div>
         </li>
         <li>
@@ -346,7 +340,7 @@
   <div class="wrap">
     <div class="cta-band reveal">
       <h2>Завітайте на каву вже сьогодні</h2>
-      <p>Ми на вул. Хрещатик, 22 — відчиняємось о 7:30. Чекаємо на вас з горнятком чогось теплого.</p>
+      <p>Ми у м. Гайворон, вул. Василя Стуса, 21 — відчиняємось о 8:00. Чекаємо на вас з горнятком чогось теплого.</p>
       <div class="hero-actions">
         <a href="https://www.google.com/maps/dir/?api=1&destination=%D0%9A%D0%B8%D1%97%D0%B2%2C+%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F+%D0%A5%D1%80%D0%B5%D1%89%D0%B0%D1%82%D0%B8%D0%BA+22" target="_blank" rel="noopener" class="btn btn-amber">Побудувати маршрут</a>
         <a href="#menu" class="arrow-circle">→</a>
@@ -357,55 +351,20 @@
 
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="nav-mark">
-          <svg class="brand-icon" width="26" height="26" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-            <circle cx="20" cy="20" r="18.5" stroke="currentColor" stroke-width="1.4"/>
-            <path d="M11.5 17.5h15v6a7.5 7.5 0 0 1-7.5 7.5 7.5 7.5 0 0 1-7.5-7.5v-6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-            <path d="M26.5 19.5h2a3 3 0 1 1 0 6h-2" stroke="currentColor" stroke-width="1.6"/>
-            <path d="M15.5 13c0-1.1 1-1.3 1-2.4M20 13c0-1.1 1-1.3 1-2.4M24.5 13c0-1.1 1-1.3 1-2.4" stroke="var(--color-amber-forge)" stroke-width="1.3" stroke-linecap="round"/>
-          </svg>
-          BLACK WOOD<span>.</span>
-        </div>
-        <p>Маленька кав'ярня власного обсмаження у серці Києва. Кава, десерти та тепла атмосфера щодня з 7:30.</p>
-      </div>
-      <div class="footer-col">
-        <h3>Навігація</h3>
-        <ul>
-          <li><a href="#about">Про нас</a></li>
-          <li><a href="#menu">Меню</a></li>
-          <li><a href="#gallery">Галерея</a></li>
-          <li><a href="#baristas">Баристи</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Контакти</h3>
-        <ul>
-          <li>вул. Хрещатик, 22, Київ</li>
-          <li>+380 44 123 45 67</li>
-          <li>hello@blackwoodcoffee.ua</li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Соцмережі</h3>
-        <ul>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Facebook</a></li>
-          <li><a href="#">Telegram</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-legal">
-      <span>© 2026 Black Wood Coffee. Усі права захищені.</span>
-      <span>Політика конфіденційності · Умови користування</span>
-    </div>
-  </div>
-</footer>
+<div id="footer-placeholder"></div>
 
-<script src="script.js"></script>
+<script>
+  Promise.all([
+    fetch('header.html').then(r => r.text()),
+    fetch('footer.html').then(r => r.text())
+  ]).then(([headerHtml, footerHtml]) => {
+    document.getElementById('header-placeholder').outerHTML = headerHtml;
+    document.getElementById('footer-placeholder').outerHTML = footerHtml;
+    const s = document.createElement('script');
+    s.src = 'script.js';
+    document.body.appendChild(s);
+  });
+</script>
 
 </body>
 </html>
